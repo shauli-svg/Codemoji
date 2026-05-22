@@ -1,0 +1,18 @@
+{
+  "name": "CodeMoji",
+  "short_name": "CodeMoji",
+  "description": "סוד קטן שנפתח עם הסימן שלך.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#070711",
+  "background_color": "#070711",
+  "icons": [
+    {
+      "src": "./public/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

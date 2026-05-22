@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck (syntax)
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Static gates
+        run: npm run test:static
+
+      - name: Build
+        run: npm run build
+
+      - name: End-to-end vertical tests
+        run: npm run test:e2e
+
+      - name: Capture build metadata
+        run: |
+          echo "::group::BUILD_ID"
+          cat BUILD_ID.txt
+          echo "::endgroup::"
+          ls -la dist
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codemoji-x-dist
+          path: dist
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,13 @@
+:root {
+  color-scheme: dark;
+  --bg: #070711;
+  --text: #fffaf0;
+  --muted: rgba(255, 250, 240, 0.68);
+  --card: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.13);
+  --aqua: #8ff8ff;
+  --gold: #fff7c2;
+  --violet: #7a3fff;
+  --danger: #ff7294;
+  --vh: 1vh;
+}
