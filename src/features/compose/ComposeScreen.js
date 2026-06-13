@@ -1,4 +1,4 @@
-import { el } from "../../app/dom.js";
+﻿import { el } from "../../app/dom.js";
 import { encodeCapsule } from "../../core/capsule/capsuleCodec.js";
 import { encryptWithPattern } from "../../core/crypto/cryptoEngine.js";
 import { copy } from "../../product/copy.js";
@@ -20,14 +20,22 @@ export function ComposeScreen({ onReady, onReset }) {
     "aria-label": copy.composeTitle
   });
   const status = el("p", { class: "sub", text: copy.chooseSign });
+  const counter = el("p", { class: "char-counter", text: "0/" + limits.maxMessageLength });
   const action = el("button", { class: "primary disabled", type: "button", text: copy.lockSecret });
+
+  function updateReadyState() {
+    const length = input.value.trim().length;
+    const ready = pattern.length >= limits.minPatternPoints && length > 0;
+    counter.textContent = String(length) + "/" + limits.maxMessageLength;
+    action.classList.toggle("disabled", !ready);
+    action.disabled = !ready;
+    status.textContent = ready ? "הסוד מוכן. אפשר לסגור." : copy.chooseSign;
+  }
 
   const patternGrid = PatternGrid({
     onChange(next) {
       pattern = next;
-      const ready = pattern.length >= limits.minPatternPoints && input.value.trim().length > 0;
-      action.classList.toggle("disabled", !ready);
-      action.disabled = !ready;
+      updateReadyState();
     }
   });
 
@@ -35,24 +43,22 @@ export function ComposeScreen({ onReady, onReset }) {
     if (action.disabled) return;
     try {
       action.disabled = true;
+      action.classList.add("working");
       status.textContent = "סוגר את הסוד…";
       const capsule = await encryptWithPattern({ plainText: input.value, pattern, skin: "bubble" });
       const encoded = encodeCapsule(capsule);
-      const url = `${window.location.origin}${window.location.pathname}#${encoded}`;
+      const url = window.location.origin + window.location.pathname + "#" + encoded;
       onReady(url);
     } catch (error) {
       status.textContent = error?.code === "MESSAGE_TOO_LONG" ? "הסוד ארוך מדי" : "צריך סוד וסימן ברור";
-      action.disabled = false;
+      action.classList.remove("working");
+      updateReadyState();
     }
   }
 
   action.disabled = true;
   action.addEventListener("click", createCapsule);
-  input.addEventListener("input", () => {
-    const ready = pattern.length >= limits.minPatternPoints && input.value.trim().length > 0;
-    action.classList.toggle("disabled", !ready);
-    action.disabled = !ready;
-  });
+  input.addEventListener("input", updateReadyState);
 
   const showHint = FeatureFlags.onboardingHint && !onboardingStore.get().composeIntroSeen;
   const hint = OnboardingHint({
@@ -76,14 +82,17 @@ export function ComposeScreen({ onReady, onReset }) {
 
   onboardingStore.markFirstRun();
 
-  return el("main", { class: "screen compose" }, [
+  return el("main", { class: "screen compose ritual-stage", "data-ritual-stage": "compose" }, [
     el("section", { class: "ritual-card" }, [
       el("p", { class: "eyebrow", text: copy.brand }),
+      el("p", { class: "ritual-step", text: "1 / כתוב סוד קטן" }),
       el("h1", { text: copy.composeTitle }),
       el("p", { class: "lead", text: copy.composeIntroLead }),
       hint,
       SecretBubble({ state: "locked" }),
       input,
+      counter,
+      el("p", { class: "ritual-step", text: "2 / צייר סימן לפתיחה" }),
       status,
       patternGrid,
       action,

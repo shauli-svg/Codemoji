@@ -1,4 +1,4 @@
-import { el } from "../../app/dom.js";
+﻿import { el } from "../../app/dom.js";
 import { copy } from "../../product/copy.js";
 import { shareLinks, shareNativeOrCopy, buildSharePayload } from "../../core/transport/shareService.js";
 import { copyToClipboard } from "../../core/transport/clipboard.js";
@@ -24,6 +24,7 @@ export function ShareSheet({ url, onReset }) {
       el("p", { class: "eyebrow", text: copy.brand }),
       el("h1", { text: copy.secretReady }),
       el("div", { class: "mini-bubble", text: preview.teaserEmoji || "✦" }),
+      el("p", { class: "ritual-step", text: "3 / שליחה בצ׳אט" }),
       el("p", { class: "sub", text: copy.privacyHint }),
       el("pre", { class: "share-preview", "aria-label": "תצוגה מקדימה של הטקסט שיישלח", text: preview.text }),
       el("div", { class: "button-stack" }, [
@@ -56,3 +57,4 @@ export function ShareSheet({ url, onReset }) {
   ]);
   return root;
 }
+

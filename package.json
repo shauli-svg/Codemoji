@@ -1,23 +1,26 @@
-{
-  "name": "codemoji-x-product",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "description": "CodeMoji X — static-first secret bubble MVP with CM8P pattern-bound capsules.",
-  "scripts": {
-    "dev": "node scripts/dev-server.mjs --port 5173",
-    "build": "node scripts/generate-build-id.mjs && node scripts/build-static.mjs",
-    "preview": "node scripts/dev-server.mjs --root dist --port 4173",
-    "lint": "node scripts/lint-basic.mjs",
-    "typecheck": "node scripts/check-js-syntax.mjs",
-    "test:unit": "node --test tests/unit/*.test.mjs",
-    "test:static": "node tests/static/architecture-check.mjs && node tests/static/forbidden-tokens-check.mjs && node tests/static/bundle-budget-check.mjs && node tests/static/whatsapp-first-check.mjs && node tests/static/teaser-presence-check.mjs && node tests/static/forbidden-emojis-check.mjs && node tests/static/html-head-check.mjs && node tests/static/a11y-check.mjs",
-    "test:e2e": "node --test tests/e2e/*.test.mjs",
-    "test": "npm run test:unit && npm run test:static && npm run test:e2e",
-    "verify": "npm run lint && npm run typecheck && npm run test:unit && npm run test:static && npm run build && npm run test:e2e",
-    "smoke:live": "node scripts/smoke-live.mjs"
-  },
-  "engines": {
-    "node": ">=22"
-  }
+﻿{
+    "name":  "codemoji-x-product",
+    "version":  "1.0.0",
+    "private":  true,
+    "type":  "module",
+    "description":  "CodeMoji X — static-first secret bubble MVP with CM8P pattern-bound capsules.",
+    "scripts":  {
+                    "dev":  "node scripts/dev-server.mjs --port 5173",
+                    "build":  "node scripts/generate-build-id.mjs \u0026\u0026 node scripts/build-static.mjs",
+                    "preview":  "node scripts/dev-server.mjs --root dist --port 4173",
+                    "lint":  "node scripts/lint-basic.mjs",
+                    "typecheck":  "node scripts/check-js-syntax.mjs",
+                    "test:unit":  "node --test tests/unit/*.test.mjs",
+                    "test:static":  "node tests/static/architecture-check.mjs \u0026\u0026 node tests/static/forbidden-tokens-check.mjs \u0026\u0026 node tests/static/bundle-budget-check.mjs \u0026\u0026 node tests/static/whatsapp-first-check.mjs \u0026\u0026 node tests/static/teaser-presence-check.mjs \u0026\u0026 node tests/static/forbidden-emojis-check.mjs \u0026\u0026 node tests/static/html-head-check.mjs \u0026\u0026 node tests/static/a11y-check.mjs \u0026\u0026 npm run test:design \u0026\u0026 npm run test:security",
+                    "test:e2e":  "node --test tests/e2e/*.test.mjs",
+                    "test":  "npm run test:unit \u0026\u0026 npm run test:static \u0026\u0026 npm run test:e2e",
+                    "verify":  "npm run lint \u0026\u0026 npm run typecheck \u0026\u0026 npm run test:unit \u0026\u0026 npm run test:static \u0026\u0026 npm run build \u0026\u0026 npm run test:e2e",
+                    "smoke:live":  "node scripts/smoke-live.mjs",
+                    "test:design":  "node tests/static/design-gate-binding-check.mjs \u0026\u0026 node tests/static/ritual-ui-contract-check.mjs \u0026\u0026 node tests/static/product-reality-contract-check.mjs",
+                    "test:security":  "node tests/static/security-deep-check.mjs",
+                    "verify:deep":  "npm run lint \u0026\u0026 npm run typecheck \u0026\u0026 npm run test:unit \u0026\u0026 npm run test:static \u0026\u0026 npm run build \u0026\u0026 npm run test:e2e"
+                },
+    "engines":  {
+                    "node":  "\u003e=22"
+                }
 }

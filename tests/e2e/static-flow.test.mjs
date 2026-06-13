@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+﻿import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { encryptWithPattern, decryptWithPattern } from "../../src/core/crypto/cryptoEngine.js";
@@ -10,6 +10,7 @@ test("static shell loads the app module and styles", () => {
   assert.match(index, /src\/app\/main\.js/);
   assert.match(index, /secretBubble\.css/);
   assert.match(index, /onboarding\.css/);
+  assert.match(index, /ritual\.css/);
   assert.match(index, /app\.webmanifest/);
 });
 
@@ -22,3 +23,4 @@ test("vertical crypto slice works: compose capsule to receive reveal", async () 
   const plain = await decryptWithPattern({ capsule: parsed, pattern });
   assert.equal(plain, "משהו קטן 🫧");
 });
+

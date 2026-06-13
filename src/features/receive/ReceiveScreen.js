@@ -1,4 +1,4 @@
-import { el, clear } from "../../app/dom.js";
+﻿import { el, clear } from "../../app/dom.js";
 import { parseCapsule } from "../../core/capsule/capsuleCodec.js";
 import { decryptWithPattern } from "../../core/crypto/cryptoEngine.js";
 import { userCopyForError } from "../../core/errors/errorCopy.js";
@@ -33,6 +33,12 @@ export function ReceiveScreen({ rawCapsule, onReply }) {
   const status = el("p", { class: "sub", text: capsule.hint || copy.receivedHint });
   const action = el("button", { class: "primary disabled", type: "button", text: copy.openSecret });
 
+  function resetAction() {
+    action.disabled = true;
+    action.classList.add("disabled");
+    action.classList.remove("working");
+  }
+
   function renderLocked(state = "locked") {
     clear(card);
     const patternGrid = PatternGrid({
@@ -64,6 +70,7 @@ export function ReceiveScreen({ rawCapsule, onReply }) {
     });
     card.append(
       el("p", { class: "eyebrow", text: copy.brand }),
+      el("p", { class: "ritual-step", text: "1 / קיבלת סוד" }),
       el("h1", { text: copy.receivedTitle }),
       hint,
       SecretBubble({ state }),
@@ -79,26 +86,29 @@ export function ReceiveScreen({ rawCapsule, onReply }) {
     try {
       action.disabled = true;
       status.textContent = "פותח…";
+      action.classList.add("working");
       clear(card);
       card.append(el("h1", { text: copy.receivedTitle }), SecretBubble({ state: "unlocking" }), status);
       const message = await decryptWithPattern({ capsule, pattern });
       clear(card);
       card.append(
         el("p", { class: "eyebrow", text: copy.brand }),
+        el("p", { class: "ritual-step", text: "2 / הסוד נפתח" }),
         el("h1", { text: copy.secretOpened }),
         SecretBubble({ state: "open", message }),
         ReplyPrompt({ onReply })
       );
     } catch (error) {
       status.textContent = userCopyForError(error?.code) + ". " + copy.tryAgain;
-      action.disabled = false;
       pattern = [];
+      resetAction();
       renderLocked("error");
     }
   }
 
-  action.disabled = true;
+  resetAction();
   action.addEventListener("click", unlock);
   renderLocked();
   return root;
 }
+

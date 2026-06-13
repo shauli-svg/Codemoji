@@ -1,7 +1,7 @@
-export const copy = Object.freeze({
+﻿export const copy = Object.freeze({
   brand: "CodeMoji",
   tagline: "סוד קטן שנפתח עם הסימן שלך.",
-  receivedTitle: "השארתי לך סוד",
+  receivedTitle: "קיבלת סוד",
   receivedHint: "צייר את הסימן כדי לפתוח",
   openSecret: "פתח את הסוד",
   wrongSign: "זה לא הסימן",
@@ -19,8 +19,9 @@ export const copy = Object.freeze({
   copyLink: "העתק קישור",
   copied: "הועתק",
   malformed: "הסוד הזה לא נפתח",
-  privacyHint: "נפתח רק עם הסימן.",
+  privacyHint: "הסוד לא גלוי בצ׳אט. הוא נפתח רק עם הסימן.",
   reset: "סוד חדש",
-  composeIntroLead: "כתוב סוד. צייר סימן.",
+  composeIntroLead: "שני צעדים: כותבים סוד, מציירים סימן.",
   receiveLandedFor: "הבועה הגיעה אליך"
 });
+
