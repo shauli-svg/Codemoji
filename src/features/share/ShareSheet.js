@@ -1,4 +1,4 @@
-﻿import { el } from "../../app/dom.js";
+import { el } from "../../app/dom.js";
 import { copy } from "../../product/copy.js";
 import { shareLinks, shareNativeOrCopy, buildSharePayload } from "../../core/transport/shareService.js";
 import { copyToClipboard } from "../../core/transport/clipboard.js";
@@ -50,7 +50,7 @@ export function ShareSheet({ url, onReset }) {
       ]),
       status,
       el("details", { class: "manual-link" }, [
-        el("summary", { text: "קישור ידני" }),
+        el("summary", { text: "העתיקו קישור" }),
         el("textarea", { readonly: "true", text: url })
       ])
     ])

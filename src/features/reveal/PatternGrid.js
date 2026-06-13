@@ -1,4 +1,4 @@
-﻿import { el } from "../../app/dom.js";
+import { el } from "../../app/dom.js";
 import { limits } from "../../product/limits.js";
 
 const GRID_VIEWBOX = 214;
@@ -22,7 +22,7 @@ function pointsToLine(points) {
     .join(" ");
 }
 
-export function PatternGrid({ onChange, onComplete, label = "צייר סימן" }) {
+export function PatternGrid({ onChange, onComplete, label = "קבעו קוד פתיחה" }) {
   let points = [];
   let drawing = false;
   const grid = el("div", { class: "pattern-grid", role: "group", "aria-label": label, "data-count": "0" });
@@ -86,7 +86,7 @@ export function PatternGrid({ onChange, onComplete, label = "צייר סימן" 
   window.addEventListener("pointerup", finish);
   window.addEventListener("pointercancel", finish);
 
-  const reset = el("button", { class: "ghost pattern-reset", type: "button", text: "נקה סימן", onclick: () => {
+  const reset = el("button", { class: "ghost pattern-reset", type: "button", text: "אפס קוד", onclick: () => {
     points = [];
     update();
   }});

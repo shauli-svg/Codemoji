@@ -1,4 +1,4 @@
-﻿import { el, clear } from "../../app/dom.js";
+import { el, clear } from "../../app/dom.js";
 import { parseCapsule } from "../../core/capsule/capsuleCodec.js";
 import { decryptWithPattern } from "../../core/crypto/cryptoEngine.js";
 import { userCopyForError } from "../../core/errors/errorCopy.js";

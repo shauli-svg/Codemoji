@@ -1,4 +1,4 @@
-﻿import { el } from "../../app/dom.js";
+import { el } from "../../app/dom.js";
 import { copy } from "../../product/copy.js";
 
 export function ReplyPrompt({ onReply }) {

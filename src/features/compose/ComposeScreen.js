@@ -1,4 +1,4 @@
-﻿import { el } from "../../app/dom.js";
+import { el } from "../../app/dom.js";
 import { encodeCapsule } from "../../core/capsule/capsuleCodec.js";
 import { encryptWithPattern } from "../../core/crypto/cryptoEngine.js";
 import { copy } from "../../product/copy.js";
@@ -50,7 +50,7 @@ export function ComposeScreen({ onReady, onReset }) {
       const url = window.location.origin + window.location.pathname + "#" + encoded;
       onReady(url);
     } catch (error) {
-      status.textContent = error?.code === "MESSAGE_TOO_LONG" ? "הסוד ארוך מדי" : "צריך סוד וסימן ברור";
+      status.textContent = error?.code === "MESSAGE_TOO_LONG" ? "הסוד ארוך מדי" : "צריך סוד וקוד פתיחה ברור";
       action.classList.remove("working");
       updateReadyState();
     }
@@ -92,7 +92,7 @@ export function ComposeScreen({ onReady, onReset }) {
       SecretBubble({ state: "locked" }),
       input,
       counter,
-      el("p", { class: "ritual-step", text: "2 / צייר סימן לפתיחה" }),
+      el("p", { class: "ritual-step", text: "2 / החליקו את קוד הפתיחה" }),
       status,
       patternGrid,
       action,

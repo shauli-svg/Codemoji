@@ -58,7 +58,7 @@ export function buildTeaserPayload(input) {
   const teaser = chooseTeaser({ seed: input.seed, mood: input.mood });
   const channel = input.channel || TeaserChannel.GENERIC;
 
-  const title = `CodeMoji ${teaser.emoji}`;
+  const title = (`CodeMoji ${teaser.emoji}`).trim();
   let text;
   if (channel === TeaserChannel.NATIVE) {
     text = teaser.body;
