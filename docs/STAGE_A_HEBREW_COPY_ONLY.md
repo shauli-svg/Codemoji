@@ -13,7 +13,7 @@ Forbidden UI terms:
 - ציור
 - גלה
 - מוכן לדרך
-- גע, צייר, גלה
+- removed old drawing/discovery slogan
 
 Preferred UI terms:
 - קוד פתיחה

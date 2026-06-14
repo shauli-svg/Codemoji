@@ -11,7 +11,7 @@
     "lint": "node scripts/lint-basic.mjs",
     "typecheck": "node scripts/check-js-syntax.mjs",
     "test:unit": "node --test tests/unit/*.test.mjs",
-    "test:static": "node tests/static/architecture-check.mjs && node tests/static/forbidden-tokens-check.mjs && node tests/static/bundle-budget-check.mjs && node tests/static/whatsapp-first-check.mjs && node tests/static/teaser-presence-check.mjs && node tests/static/forbidden-emojis-check.mjs && node tests/static/html-head-check.mjs && node tests/static/a11y-check.mjs && npm run test:design && npm run test:security && npm run test:copy-hebrew",
+    "test:static": "node tests/static/architecture-check.mjs && node tests/static/forbidden-tokens-check.mjs && node tests/static/bundle-budget-check.mjs && node tests/static/whatsapp-first-check.mjs && node tests/static/teaser-presence-check.mjs && node tests/static/forbidden-emojis-check.mjs && node tests/static/html-head-check.mjs && node tests/static/a11y-check.mjs && npm run test:design && npm run test:security && npm run test:copy-hebrew && npm run test:whatsapp-transport",
     "test:e2e": "node --test tests/e2e/*.test.mjs",
     "test": "npm run test:unit && npm run test:static && npm run test:e2e",
     "verify": "npm run lint && npm run typecheck && npm run test:unit && npm run test:static && npm run build && npm run test:e2e",
@@ -19,7 +19,8 @@
     "test:design": "node tests/static/design-gate-binding-check.mjs && node tests/static/ritual-ui-contract-check.mjs && node tests/static/product-reality-contract-check.mjs",
     "test:security": "node tests/static/security-deep-check.mjs",
     "verify:deep": "npm run lint && npm run typecheck && npm run test:unit && npm run test:static && npm run build && npm run test:e2e",
-    "test:copy-hebrew": "node tests/static/copy-hebrew-contract-check.mjs"
+    "test:copy-hebrew": "node tests/static/copy-hebrew-contract-check.mjs",
+    "test:whatsapp-transport": "node tests/static/whatsapp-transport-contract-check.mjs"
   },
   "engines": {
     "node": ">=22"

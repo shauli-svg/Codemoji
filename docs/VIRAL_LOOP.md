@@ -28,7 +28,7 @@ Each template:
 
 - Hebrew first (UI audience).
 - ≤ 140 chars (single mobile preview line).
-- Includes at least one pictographic curiosity hook.
+- Includes a mature secret/code hook and must not require pictographic or emoji hooks.
 - Uses **only Emoji 5.0 or older codepoints** — recipients on stale
   Android / iOS / WhatsApp Desktop fonts render Emoji 13.0+ as
   `U+FFFD` ("diamond with question mark"). The static gate
